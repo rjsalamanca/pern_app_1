@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.rankRadioContainer{
+  display:grid; 
+  width:100%; 
+  grid-row: 2; 
+  justify-items:space-around'
+}
+
+.rankRadio{
+  display: block;
+  grid-row: 2;
+}
+
+.rankRadio:nth-child(2){
+  grid-column: 2 / 5;
+}
+.rankRadio:nth-child(3){
+  grid-column: 3 / 5;
+}
+.rankRadio:nth-child(4){
+  grid-column: 4 / 5;
+}
+.rankRadio:nth-child(5){
+  grid-column: 5 / 5;
 }

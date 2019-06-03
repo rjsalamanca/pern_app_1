@@ -4,12 +4,7 @@ const express = require('express'),
     cookieParser = require('cookie-parser'),
     logger = require('morgan'),
     // Routes
-    indexRouter = require('./routes/index'),
-    usersRouter = require('./routes/users'),
-    dogsRouter = require('./routes/dogs.js'),
-    carsRouter = require('./routes/cars.js'),
-    phonesRouter = require('./routes/phones.js'),
-    ceosRouter = require('./routes/ceos.js'),
+    indexRouter = require('./routes/index');
 
     app = express();
 
@@ -24,10 +19,5 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/dogs', dogsRouter);
-app.use('/cars', carsRouter);
-app.use('/phones', phonesRouter);
-app.use('/ceos', ceosRouter);
 
 module.exports = app;

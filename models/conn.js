@@ -6,9 +6,13 @@ const pgp = require('pg-promise') ({
 
 const options = {
     host: 'localhost',
-    database: 'apple_co',
+    database: 'class_rankings',
     user: 'rjs'
 }
+
+// Tables we're using:
+// class_topics
+// topic_rankings
 
 const db = pgp(options)
 

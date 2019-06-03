@@ -1,0 +1,35 @@
+<section class='section'>
+    <table class='table'>
+        <thead class='thead'>
+            <tr class='tr'>
+                <tr>
+                    <td><b>ID</b></td>
+                    <td><b>Name</b></td>
+                    <td><b>Year</b></td>
+                </tr>
+            </tr>
+        </thead>
+        ${executiveList.map(person => 
+            `
+            <tr>
+                <td>${person.id}</td>
+                <td>${person.name}</td>
+                <td>${person.year}</td>
+            </tr>
+            `
+            ).join('')
+        }
+    </table>
+    <section class='section'>
+        <p>Add a New CEO</p>
+        <form action='/ceos' method='POST'>
+            <label>Name: 
+                <input type='text' name='name'/>
+            </label>
+            <label>Year:
+                <input type='text' name='year'/>
+            </label>
+            <button type='submit' class='is-primary'>Submit</button>
+        </form>
+    </section>
+</section>

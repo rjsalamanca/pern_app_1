@@ -18,24 +18,34 @@ class class_rankings {
 
     static async getAllRankings(){
         try{
-            const response = await db.any(`select * from topics_rankings`);
+            const response = await db.any(`select * from topic_rankings`);
             return response;
         } catch(err){
             return err.message;
         }
     }
 
-    // static async add(name,year){
-    //     const query = `INSERT INTO ceos (name,year) VALUES ('${name}',${year})`;
-        
-    //     try {
-    //         let response = await db.result(query);
-    //         return response;
-    //     } catch(err){
-    //         console.log('ERROR', err.message);
-    //         return err;
-    //     }
-    // }
+    static async getSelfRank(){
+        const query = `SELECT C.topic_name, R.ranking FROM class_topics AS C, topic_rankings AS R WHERE  C.self_score = R.id;`;
+        try {
+            let response = await db.result(query);
+            return response;
+        } catch(err){
+            console.log('ERROR', err.message);
+            return err;
+        }
+    }
+
+    static async addRankings(className,score){
+        const query = `UPDATE class_topics SET self_score = ${score} WHERE topic_name = ${className}`;
+        try {
+            let response = await db.result(query);
+            return response;
+        } catch(err){
+            console.log('ERROR', err.message);
+            return err;
+        }
+    }
 }
 
 module.exports = class_rankings;

@@ -1,5 +1,8 @@
 # pern_app_1
 
+### Instructions:
+Download and run 'npm run dev' solutions stored in localhost:3000/rate
+
 We're going to create an app to rank our understanding of the following topics:
 
 * HTML
@@ -21,7 +24,7 @@ We'll rank our understanding of the topics using the following 5 point scale:
 ## The Assignment
 
     * Create a PSQL database
-        * Create two tables; one for the topics, and another for the ranking scale - DONE
+        * Create two tables; one for the topics, and another for the ranking scale
     * Create a Node + Express App:
         * With a GET route that displays your assessment for each topic (how you think you rank).
         * With a POST route that allows you to change your ranking for each topic.

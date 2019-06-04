@@ -2,24 +2,21 @@
     <table class='table'>
         <thead class='thead'>
             <tr class='tr'>
-                <tr>
-                    <td><b>How We Rank:</b></td>
-                </tr>
-                <tr><td>0. Unranked</td></tr>
-                <tr><td>1. Poor</td></tr>
-                <tr><td>2. Okay</td></tr>
-                <tr><td>3. Good</td></tr>
-                <tr><td>4. Great</td></tr>
-                <tr><td>5. Awesome</td></tr>
+                <td><b>How We Rank:</b></td>
+            </tr>
         </thead>
+        <tr><td>0. Unranked</td></tr>
+        <tr><td>1. Poor</td></tr>
+        <tr><td>2. Okay</td></tr>
+        <tr><td>3. Good</td></tr>
+        <tr><td>4. Great</td></tr>
+        <tr><td>5. Awesome</td></tr>
     </table>
     <table class='table' id='selfRank'>
         <thead class='thead'>
             <tr class='tr'>
-                <tr>
-                    <td><b>Class:</b></td>
-                    <td style='width:200px;'><b>How We Are Doing:</b></td>
-                </tr>
+                <td><b>Class:</b></td>
+                <td style='width:200px;'><b>How We Are Doing:</b></td>
             </tr>
         </thead>
                 ${
@@ -36,64 +33,29 @@
     <table class='table' id='mainTable'>
         <thead class='thead'>
             <tr class='tr'>
-                <tr>
-                    <td><b>Class Name</b></td>
-                    <td style='width:200px;'><b>Rank</b></td>
-                </tr>
+                <td><b>Class Name</b></td>
+                <td style='width:200px;'><b>Rank</b></td>
             </tr>
         </thead>
+        <form id='form' action="/rate" method='POST'>
         ${
-            classTopics.map((ele,ind) =>
+            selfRanks.rows.map(ele=>
                 `
                 <tr>
-                    <td>            
-                        ${ele.topic_name}
-                    </td>
-                    <td>
-                        <form id='form${ind+1}'class='rankRadioContainer' action="/" method='POST'>
-                            <input type="radio" name="rank" value="0" class='rankRadio' checked/>0
-                            <input type="radio" name="rank" value="1" class='rankRadio'/>1
-                            <input type="radio" name="rank" value="2" class='rankRadio'/>2
-                            <input type="radio" name="rank" value="3" class='rankRadio'/>3
-                            <input type="radio" name="rank" value="4" class='rankRadio'/>4
-                            <input type="radio" name="rank" value="5" class='rankRadio'/>5
-                            <textarea name='topic' style="display:none;"/>${ele.topic_name}</textarea>
-                        </form>
+                    <td>${ele.topic_name}</td>
+                    <td id='rankRadioContainer'>
+                        ${
+                            selfRanks.rows.map((e,ind)=>
+                                ele.id == ind ? `<input type="radio" name='${ele.topic_name}' value=${ind+1} class='rankRadio' checked/>${ind}`:`<input type="radio" name='${ele.topic_name}' value=${ind+1} class='rankRadio'/>${ind}`
+                            ).join('')
+                        }
+                        <textarea name='topic' style="display:none;"/>${ele.topic_name}</textarea>
                     </td>
                 </tr>
                 `
             ).join('')
-
-            +
-
-            `<tr>
-                <td>  
-                    <form id='submitAll'class='rankRadioContainer' action="/rate" method='POST'>
-                        <button id='masterButton' type='submit' class='is-primary' name='rankObj' value='' onclick='submitForm(${classTopics.length})'>Submit</button>
-                    </form>
-                </td>
-            </tr>
-            `
         }
+        <tr><td><button id='masterButton' type='submit' class='is-primary' name='rankObj' value=''>Submit</button></td></tr>
+        </form>
     </table>
 </div>
-<script>
-
-function submitForm(formAmount){
-    let obj = {};
-
-    for(let i = 0; i < formAmount; i++){
-        let form = document.getElementById('form'+(i+1));
-        let topic = form.children['topic'].value;
-        let rank = form.children;
-        Array.from(rank).forEach(ele=>{
-            if(ele.checked){
-                obj[topic] = ele.value;
-            }
-        })
-    }
-
-    document.getElementById('masterButton').value = JSON.stringify(obj);
-}
-
-</script>

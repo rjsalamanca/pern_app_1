@@ -6,16 +6,27 @@ a {
   color: #00B7FF;
 }
 
-.rankRadioContainer{
+#displayRanking{
+  display:flex;
+}
+
+#displayRanking table{
+  margin:0 20px;
+}
+
+#rankRadioContainer{
   display:grid; 
   width:100%; 
   grid-row: 2; 
-  justify-items:space-around'
+  margin-bottom: -1px;
 }
 
 .rankRadio{
   display: block;
   grid-row: 2;
+}
+.rankRadio:nth-child(1){
+  grid-column: 1 / 5;
 }
 
 .rankRadio:nth-child(2){

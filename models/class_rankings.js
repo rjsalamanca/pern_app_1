@@ -26,7 +26,7 @@ class class_rankings {
     }
 
     static async getSelfRank(){
-        const query = `SELECT C.topic_name, R.ranking FROM class_topics AS C, topic_rankings AS R WHERE  C.self_score = R.id ORDER BY C.id;`;
+        const query = `SELECT C.topic_name, R.id, R.ranking FROM class_topics AS C, topic_rankings AS R WHERE  C.self_score = R.id ORDER BY C.id;`;
         try {
             let response = await db.result(query);
             return response;

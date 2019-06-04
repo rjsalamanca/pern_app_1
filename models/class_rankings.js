@@ -9,7 +9,7 @@ class class_rankings {
 
     static async getAllTopics(){
         try{
-            const response = await db.any(`select * from class_topics`);
+            const response = await db.any(`select * from class_topics ORDER BY id`);
             return response;
         } catch(err){s
             return err.message;
@@ -18,7 +18,7 @@ class class_rankings {
 
     static async getAllRankings(){
         try{
-            const response = await db.any(`select * from topic_rankings`);
+            const response = await db.any(`select * from topic_rankings ORDER BY id`);
             return response;
         } catch(err){
             return err.message;
@@ -26,7 +26,7 @@ class class_rankings {
     }
 
     static async getSelfRank(){
-        const query = `SELECT C.topic_name, R.ranking FROM class_topics AS C, topic_rankings AS R WHERE  C.self_score = R.id;`;
+        const query = `SELECT C.topic_name, R.ranking FROM class_topics AS C, topic_rankings AS R WHERE  C.self_score = R.id ORDER BY C.id;`;
         try {
             let response = await db.result(query);
             return response;

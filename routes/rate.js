@@ -24,8 +24,8 @@ router.post('/', async (req,res) => {
 
   const { rankObj } = req.body;
   let rankJSON = JSON.parse(rankObj);
-  
-  Object.keys(rankJSON).forEach(async (key)=>{
+
+  await Object.keys(rankJSON).forEach(async (key)=>{
     await classRankings.addRankings(`'${key}'`,parseInt(rankJSON[key])+1);
   });
 

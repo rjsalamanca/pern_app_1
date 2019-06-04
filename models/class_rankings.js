@@ -8,8 +8,9 @@ class class_rankings {
     }
 
     static async getAllTopics(){
+        const query = `select * from class_topics ORDER BY id`;
         try{
-            const response = await db.any(`select * from class_topics ORDER BY id`);
+            const response = await db.result(query);
             return response;
         } catch(err){s
             return err.message;
@@ -17,8 +18,9 @@ class class_rankings {
     }
 
     static async getAllRankings(){
+        const query = `select * from topic_rankings ORDER BY id`;
         try{
-            const response = await db.any(`select * from topic_rankings ORDER BY id`);
+            const response = await db.result(query);
             return response;
         } catch(err){
             return err.message;
@@ -39,13 +41,17 @@ class class_rankings {
 
     static async addRankings(className,score){
         const query = `UPDATE class_topics SET self_score = ${score} WHERE topic_name = ${className}`;
-        try {
-            let response = await db.result(query);
-            return response;
-        } catch(err){
-            console.log('ERROR', err.message);
-            return err;
-        }
+        return await runQuery(query);
+    }
+}
+
+async function runQuery(query){
+    try {
+        let response = await db.result(query);
+        return response;
+    } catch(err){
+        console.log('ERROR', err.message);
+        return err;
     }
 }
 

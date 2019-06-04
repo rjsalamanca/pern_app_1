@@ -30,7 +30,7 @@ router.post('/', async (req,res) => {
   const allSelfRanks = await classRankings.getSelfRank();
   res.status(200).render('template', {
     locals: {
-        title: 'UPDATED PAGE!',
+        title: 'UPDATED PAGE! <br/> Class Rankings',
         selfRanks: allSelfRanks
       },
         partials: {

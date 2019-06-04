@@ -19,6 +19,7 @@ table{
 
 #displayRanking{
   display:flex;
+  justify-content: center;
 }
 
 #displayRanking table{
@@ -29,7 +30,6 @@ table{
   display:grid; 
   width:100%; 
   grid-row: 2; 
-  margin-bottom: -1px;
 }
 
 .rankRadio{
@@ -63,9 +63,9 @@ table{
   height:50px;
   background: #4EA1CA;
   color:white;
-  transition: background 1s ease-in-out;
 }
 
 #masterButton:hover{
   background: #20536C;
+  transition: background 1s ease-in-out;
 }

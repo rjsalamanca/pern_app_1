@@ -30,7 +30,7 @@
                     ).join('')
                 }
     </table>
-    <table class='table' id='mainTable'>
+    <table class='table' id='radioTable'>
         <thead class='thead'>
             <tr class='tr'>
                 <td><b>Class Name</b></td>
@@ -46,16 +46,15 @@
                     <td id='rankRadioContainer'>
                         ${
                             selfRanks.rows.map((e,ind)=>
-                                ele.id == ind ? `<input type="radio" name='${ele.topic_name}' value=${ind+1} class='rankRadio' checked/>${ind}`:`<input type="radio" name='${ele.topic_name}' value=${ind+1} class='rankRadio'/>${ind}`
+                                ele.id == ind+1 ? `<input type="radio" name='${ele.topic_name}' value=${ind+1} class='rankRadio' checked/>${ind}`:`<input type="radio" name='${ele.topic_name}' value=${ind+1} class='rankRadio'/>${ind}`
                             ).join('')
                         }
-                        <textarea name='topic' style="display:none;"/>${ele.topic_name}</textarea>
                     </td>
                 </tr>
                 `
             ).join('')
         }
-        <tr><td><button id='masterButton' type='submit' class='is-primary' name='rankObj' value=''>Submit</button></td></tr>
+        <tr><td colspan='2' id='buttonContainer'><button id='masterButton' class='button' type='submit' value=''>Submit</button></td></tr>
         </form>
     </table>
 </div>

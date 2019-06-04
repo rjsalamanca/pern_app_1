@@ -1,9 +1,20 @@
 body {
+  padding:40px 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+table{
+  border:1px solid #4EA1CA;
+  border-collapse: separate;
+  border-radius: 10px;
+}
+
+.title{
+  text-align:center;
 }
 
 #displayRanking{
@@ -40,4 +51,21 @@ a {
 }
 .rankRadio:nth-child(5){
   grid-column: 5 / 5;
+}
+
+#buttonContainer{
+  margin:0 auto;
+  text-align: center;
+}
+
+#masterButton{
+  width:80%;
+  height:50px;
+  background: #4EA1CA;
+  color:white;
+  transition: background 1s ease-in-out;
+}
+
+#masterButton:hover{
+  background: #20536C;
 }

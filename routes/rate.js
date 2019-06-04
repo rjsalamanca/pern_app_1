@@ -7,9 +7,7 @@ router.get('/', async function(req, res, next) {
   const allClassTopics = await classRankings.getAllTopics();
   const allSelfRanks = await classRankings.getSelfRank();
 
-  console.log(allSelfRanks.rows[0])
-
-  res.render('template', { 
+  await res.render('template', { 
     locals:{
       title: 'Class Rankings',
       classTopics: allClassTopics,
@@ -23,28 +21,22 @@ router.get('/', async function(req, res, next) {
 
 router.post('/', async (req,res) => {
 
-  console.log(req.body)
-  // const allClassTopics = await classRankings.getAllTopics();
+  const rankObj = req.body;
 
-  // const { rankObj } = req.body;
-  // let rankJSON = JSON.parse(rankObj);
+  Object.keys(rankObj).forEach(async (key)=>{
+    classRankings.addRankings(`'${key}'`,parseInt(rankObj[key]));
+  })
 
-  // await Object.keys(rankJSON).forEach(async (key)=>{
-  //   classRankings.addRankings(`'${key}'`,parseInt(rankJSON[key])+1);
-  // });
-
-  // const allSelfRanks = await classRankings.getSelfRank();
-
-  // await res.status(200).render('template', {
-  //   locals: {
-  //       title: 'UPDATED PAGE!',
-  //       classTopics: allClassTopics,
-  //       selfRanks: allSelfRanks
-  //     },
-  //       partials: {
-  //         partial: 'partial-rankings'
-  //       }
-  // });
+  const allSelfRanks = await classRankings.getSelfRank();
+  res.status(200).render('template', {
+    locals: {
+        title: 'UPDATED PAGE!',
+        selfRanks: allSelfRanks
+      },
+        partials: {
+          partial: 'partial-rankings'
+        }
+  });
 });
 
 module.exports = router;

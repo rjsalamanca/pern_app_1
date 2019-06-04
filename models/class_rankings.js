@@ -29,6 +29,7 @@ class class_rankings {
         const query = `SELECT C.topic_name, R.id, R.ranking FROM class_topics AS C, topic_rankings AS R WHERE  C.self_score = R.id ORDER BY C.id;`;
         try {
             let response = await db.result(query);
+            console.log(response.rows)
             return response;
         } catch(err){
             console.log('ERROR', err.message);
